@@ -1,7 +1,6 @@
 #
 # Copyright (C) 2020 The Android Open Source Project
-# Copyright (C) 2020 The TWRP Open Source Project
-# Copyright (C) 2020 SebaUbuntu's TWRP device tree generator
+# Copyright (C) 2021-2022 TeamWin Recovery Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,4 +17,5 @@
 
 PRODUCT_MAKEFILES := \
     $(LOCAL_DIR)/twrp_RMX3195.mk
-COMMON_LUNCH_CHOICES := twrp_RMX3195-eng    
+
+COMMON_LUNCH_CHOICES := twrp_RMX3195-eng
