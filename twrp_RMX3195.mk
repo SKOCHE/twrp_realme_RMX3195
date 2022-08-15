@@ -18,8 +18,8 @@ LOCAL_PATH := device/realme/RMX3195
 
 # Inherit from those products. Most specific first.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base.mk)
-#$(call inherit-product, $(SRC_TARGET_DIR)/product/base.mk)
+#$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/base.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/gsi_keys.mk)
 
 # Inherit from our custom product configuration
@@ -45,12 +45,14 @@ PRODUCT_PACKAGES += \
     android.hardware.fastboot@1.0-impl-mock.recovery \
     fastbootd
 
+# Extra required packages
+PRODUCT_PACKAGES += \
+    twrpfbe
+
 # Bypass anti-rollback ROMs protection
 # Set build date to Jan 1 2009 00:00:00
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.build.date.utc=1230768000 \
-    ro.bootimage.build.date.utc=0 \
-    ro.build.date.utc=0
+    ro.build.date.utc=1230768000
 
 PRODUCT_SYSTEM_PROPERTY_BLACKLIST := \
     ro.product.device \

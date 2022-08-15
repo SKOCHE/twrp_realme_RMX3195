@@ -10,5 +10,4 @@ ro.debuggable=1
 ro.boot.avb_version=1.1
 ro.boot.vbmeta.avb_version=1.1
 ro.vendor.mediatek.platform=MT6768
-ro.product.product.device=RMX3195
 ro.vendor.mtk_trustonic_tee_support=1
