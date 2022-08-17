@@ -124,7 +124,7 @@ on property:enable.fbe.service=0
     stop mobicore
     stop servicemanager
     stop hwservicemanager
-    stop keymaster-4-0
+    stop keymaster-4-1
     stop gatekeeperd
     stop gatekeeper-1-0
 
@@ -133,7 +133,7 @@ on property:hwservicemanager.ready=true && property:crypto.ready=1
     start tee-1-1
     start hal_cryptoeng_oppo
     start mobicore
-    start keymaster-4-0
+    start keymaster-4-1
     start gatekeeper-1-0
     start hwservicemanager
     start servicemanager
@@ -143,21 +143,21 @@ on property:ro.crypto.state=unsupported
     stop hal_cryptoeng_oppo
     stop mobicore
     stop hal_cryptoeng_oppo
-    stop keymaster-4-0
+    stop keymaster-4-1
     stop gatekeeper-1-0
 
 on property:ro.crypto.state=unencrypted
     setprop crypto.ready 0
     stop mobicore
     stop hal_cryptoeng_oppo
-    stop keymaster-4-0
+    stop keymaster-4-1
     stop gatekeeper-1-0
 
 on property:twrp.decrypt.done=true && property:twrp.all.users.decrypted=true
     setprop crypto.ready 0
     stop mobicore
     stop hal_cryptoeng_oppo
-    stop keymaster-4-0
+    stop keymaster-4-1
     stop gatekeeper-1-0
 
 on post-fs-data
