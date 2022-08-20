@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest version="1.0" type="device">
+    <hal format="hidl">
+        <name>vendor.oplus.hardware.felica</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>IFelicaDevice</name>
+            <instance>oplusStor1</instance>
+        </interface>
+    </hal>
+</manifest>

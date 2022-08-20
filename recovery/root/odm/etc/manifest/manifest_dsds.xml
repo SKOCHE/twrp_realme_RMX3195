@@ -1,0 +1,27 @@
+<!--
+/* *****************************************************************************
+** File: manifest_oplus_dsds.xml
+** OPLUS_DYNAMIC_SINGLE_SIM
+** Copyright (C), 2021, Oplus Mobile Comm Corp., Ltd
+**
+** Description:
+**       manifest_dsds.xml+manifest_secure_element_dsds.xml
+**
+** Version: 1.0
+** Date created: 14:30:00, 2019/4/25
+** Author: Baozhu Yu
+** TAG: NW.SIM.1704058
+** ******************************* Revision History: ***************************
+**         <author>                <date>            <desc>
+**         Baozhu Yu               2019/4/25          create
+** *****************************************************************************
+*/
+-->
+<manifest version="1.0" type="device">
+   <hal override="true" format="hidl">
+        <name>android.hardware.secure_element</name>
+        <transport>hwbinder</transport>
+        <fqname>@1.2::ISecureElement/SIM1</fqname>
+        <fqname>@1.2::ISecureElement/SIM2</fqname>
+    </hal>
+</manifest>
