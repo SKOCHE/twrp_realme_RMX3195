@@ -44,14 +44,13 @@ service mobicore /vendor/bin/mcDriverDaemon --P1 /mnt/vendor/persist/mcRegistry 
     disabled
     seclabel u:r:recovery:s0
 
-#Add for OPPO FBE
 service hal_cryptoeng_oplus /odm/bin/hw/vendor.oplus.hardware.cryptoeng@1.0-service
     user root
     group root drmrpc input sdcard_rw sdcard_r
     disabled
     seclabel u:r:recovery:s0
 
-service keymaster-4-1 /system/bin/android.hardware.keymaster@4.1-service.trustonic
+service keymaster-4-1 /vendor/bin/hw/android.hardware.keymaster@4.1-service.trustonic
     user root
     group root drmrpc
     disabled
