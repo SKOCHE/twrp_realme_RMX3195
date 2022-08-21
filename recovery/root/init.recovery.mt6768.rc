@@ -35,7 +35,7 @@ service keymaster-4-1 /system/bin/android.hardware.keymaster@4.1-service.truston
     disabled
     seclabel u:r:recovery:s0
 
-service gatekeeper-1-0 /vendor/bin/hw/android.hardware.gatekeeper@1.0-service
+service gatekeeper-1-0 /system/bin/android.hardware.gatekeeper@1.0-service
     user root
     group root
     disabled
