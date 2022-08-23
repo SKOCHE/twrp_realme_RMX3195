@@ -1,0 +1,86 @@
+import /tee.rc
+import /init.recovery.trustonic.rc
+
+service keystore_auth /system/bin/keystore_auth
+    oneshot
+    user system
+    group root
+    disabled
+    seclabel u:r:recovery:s0
+
+service keystore2 /system/bin/keystore2 /tmp/misc/keystore
+    class early_hal
+    user root
+    group keystore readproc log
+    disabled
+    writepid /dev/cpuset/foreground/tasks
+    seclabel u:r:recovery:s0
+
+on property:ro.crypto.state=encrypted && property:ro.crypto.type=file
+    install_keyring
+    setprop crypto.ready 1
+
+on property:hwservicemanager.ready=true && property:crypto.ready=1
+    start hal_cryptoeng_oppo
+    start keymaster-4-1
+    start gatekeeper-1-0
+
+on property:ro.crypto.state=unsupported
+    setprop crypto.ready 0
+    stop hal_cryptoeng_oppo
+    stop mobicore
+    stop keymaster-4-1
+    stop gatekeeper-1-0
+
+on property:ro.crypto.state=unencrypted
+    setprop crypto.ready 0
+    stop hal_cryptoeng_oppo
+    stop mobicore
+    stop keymaster-4-1
+    stop gatekeeper-1-0
+
+on post-fs-data
+    mkdir /data/vendor_de 0770 system system
+    mkdir /data/vendor_de/0 0770 system system
+    mkdir /data/vendor_de/0/cryptoeng 0770 system system
+
+on boot
+    start health-hal-2-1
+
+service gatekeeper-1-0 /system/bin/hw/android.hardware.gatekeeper@1.0-service
+    user root
+    group root
+    disabled
+    seclabel u:r:recovery:s0
+
+service hal_cryptoeng_oppo /vendor/bin/hw/vendor.oplus.hardware.cryptoeng@1.0-service
+    user root
+    group root input sdcard_rw sdcard_r
+    disabled
+    seclabel u:r:recovery:s0
+
+service keymaster-4-1 /vendor/bin/hw/android.hardware.keymaster@4.1-service.trustonic
+    user root
+    group root drmrpc
+    disabled
+    seclabel u:r:recovery:s0
+    
+ service soter_hal /vendor/bin/hw/vendor.trustonic.soter@1.0-service
+    user root
+    group root
+    disabled
+    seclabel u:r:recovery:s0
+    
+service tee-1-1 /vendor/bin/hw/vendor.trustonic.tee@1.1-service
+    user root
+    group root
+    disabled
+    seclabel u:r:recovery:s0    
+
+on property:twrp.decrypt.done=true && property:twrp.all.users.decrypted=true
+    setprop crypto.ready 0
+    stop hal_cryptoeng_oppo
+    stop mobicore
+    stop keymaster-4-1
+    stop gatekeeper-1-0
+
