@@ -21,6 +21,7 @@ on property:ro.crypto.state=encrypted && property:ro.crypto.type=file
     setprop crypto.ready 1
 
 on property:hwservicemanager.ready=true && property:crypto.ready=1
+    start mobicore
     start hal_cryptoeng_oppo
     start keymaster-4-1
     start gatekeeper-1-0
