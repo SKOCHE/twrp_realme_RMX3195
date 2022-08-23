@@ -8,13 +8,13 @@ service keystore_auth /system/bin/keystore_auth
     disabled
     seclabel u:r:recovery:s0
 
-service keystore2 /system/bin/keystore2 /tmp/misc/keystore
-    class early_hal
-    user root
-    group keystore readproc log
-    disabled
-    writepid /dev/cpuset/foreground/tasks
-    seclabel u:r:recovery:s0
+#service keystore2 /system/bin/keystore2 /tmp/misc/keystore
+#    class early_hal
+#    user root
+#    group keystore readproc log
+#    disabled
+#    writepid /dev/cpuset/foreground/tasks
+#    seclabel u:r:recovery:s0
 
 on property:ro.crypto.state=encrypted && property:ro.crypto.type=file
     install_keyring
