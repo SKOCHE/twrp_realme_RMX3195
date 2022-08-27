@@ -1,7 +1,7 @@
 # TWRP Realme C25s
 Works:
-Encryption
-Fastbootd
-Backup and recovery
-MTP
+Encryption.
+Fastbootd.
+Backup and recovery.
+MTP.
 
