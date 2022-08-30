@@ -51,6 +51,7 @@ TARGET_OTA_ASSERT_DEVICE := RMX3195,rmx3195,RMX3197,rmx3197,ossi
 
 # Kernel
 BOARD_KERNEL_CMDLINE := bootopt=64S3,32N2,64N2
+BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
 BOARD_KERNEL_IMAGE_NAME := Image.gz
 BOARD_BOOT_HEADER_VERSION := 2
 BOARD_KERNEL_BASE := 0x40078000
@@ -134,13 +135,13 @@ TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/system/etc/recovery.fstab
 BOARD_HAS_LARGE_FILESYSTEM := true
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 # Additional binaries & libraries needed for recovery
-     TARGET_RECOVERY_DEVICE_MODULES += \
+TARGET_RECOVERY_DEVICE_MODULES += \
      libkeymaster4 \
      libpuresoftkeymasterdevice \
      ashmemd_aidl_interface-cpp \
      libashmemd_client
-
-  TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
+     
+TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
    $(TARGET_OUT_SHARED_LIBRARIES)/libkeymaster4.so \
    $(TARGET_OUT_SHARED_LIBRARIES)/libpuresoftkeymasterdevice.so \
    $(TARGET_OUT_SHARED_LIBRARIES)/ashmemd_aidl_interface-cpp.so \
