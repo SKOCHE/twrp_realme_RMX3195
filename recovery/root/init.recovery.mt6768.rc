@@ -1,4 +1,3 @@
-import /tee.rc
 on init
 	mkdir /mnt/vendor/persist/mcRegistry																	 
     mkdir /mnt/vendor/persist
