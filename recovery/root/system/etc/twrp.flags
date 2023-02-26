@@ -1,16 +1,4 @@
 # mount point    fstype    device                         flags
-
-# Android 12 = /system and /vendor in "super" partition.
-/system		    ext4	/dev/block/mapper/system
-/vendor             ext4        /dev/block/mapper/vendor      
-/product            ext4        /dev/block/mapper/product     
-
-# Images																		  
-/system_image	    emmc	/dev/block/mapper/system    flags=backup=1;flashimg=1
-/vendor_image	    emmc	/dev/block/mapper/vendor    flags=backup=1;flashimg=1
-/product_image	    emmc	/dev/block/mapper/product   flags=backup=1;flashimg=1;display="Product Image"
-
-
 /recovery        emmc      /dev/block/by-name/recovery    flags=backup
 /boot            emmc      /dev/block/by-name/boot
 /cache           ext4      /dev/block/by-name/cache
