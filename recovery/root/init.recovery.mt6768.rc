@@ -1,6 +1,10 @@
 on init
-    mkdir /mnt/vendor/persist
-    mount ext4 /dev/block/by-name/persist /mnt/vendor/persist rw
+    #ifndef OPLUS_FEATURE_RECOVERY_RESET 
+    #Yang.Li@ANDROID.STORAGE, 2017/12/19, Remove for can't umount /vendor in OTA update 
+    mkdir /mnt/vendor/persist/mcRegistry 
+    mkdir /mnt/vendor /persist 
+    mount ext4 /dev/block/by-name/persist /mnt/vendor/persist rw 
+    #endif /* OPLUS_FEATURE_RECOVERY_RESET */
 
 on fs
     install_keyring
