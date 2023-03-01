@@ -1,10 +1,19 @@
 on init
-    #ifndef OPLUS_FEATURE_RECOVERY_RESET 
-    #Yang.Li@ANDROID.STORAGE, 2017/12/19, Remove for can't umount /vendor in OTA update 
-    mkdir /mnt/vendor/persist/mcRegistry 
-    mkdir /mnt/vendor /persist 
-    mount ext4 /dev/block/by-name/persist /mnt/vendor/persist rw 
-    #endif /* OPLUS_FEATURE_RECOVERY_RESET */
+    #create mountpoint for /mnt/vendor/persist partition
+    mkdir /mnt/vendor/persist 0771 system system
+
+on post-fs
+    chown system system /mnt/vendor/persist
+    chmod 0771 /mnt/vendor/persist
+
+    # We restorecon /mnt/vendor/persist to set SEPolicy label.
+    restorecon /mnt/vendor/persist
+
+    # Mount the persist partition on /mnt/vendor/persist
+    mount ext4 /dev/block/by-name/persist /mnt/vendor/persist rw
+
+    # Create mcRegistry to store failure record
+    mkdir /mnt/vendor/persist/mcRegistry 0771 system system
 
 on fs
     install_keyring
