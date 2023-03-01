@@ -1,19 +1,7 @@
+import /tee.rc
 on init
-    #create mountpoint for /mnt/vendor/persist partition
-    mkdir /mnt/vendor/persist 0771 system system
-
-on post-fs
-    chown system system /mnt/vendor/persist
-    chmod 0771 /mnt/vendor/persist
-
-    # We restorecon /mnt/vendor/persist to set SEPolicy label.
-    restorecon /mnt/vendor/persist
-
-    # Mount the persist partition on /mnt/vendor/persist
+    mkdir /mnt/vendor/persist
     mount ext4 /dev/block/by-name/persist /mnt/vendor/persist rw
-
-    # Create mcRegistry to store failure record
-    mkdir /mnt/vendor/persist/mcRegistry 0771 system system
 
 on fs
     install_keyring
