@@ -1,9 +1,18 @@
 # mount point    fstype    device                         flags
 
 # Android 12 = /system and /vendor in "super" partition.
-/system		    ext4	/dev/block/mapper/system
-/vendor             ext4        /dev/block/mapper/vendor      
-/product            ext4        /dev/block/mapper/product     
+# for Custom rom with ext4
+/system             ext4    /dev/block/bootdevice/by-name/system                                    flags=slotselect;display="system";backup=1;logical;wipeingui;
+/product            ext4    /dev/block/bootdevice/by-name/product                                   flags=slotselect;display="product";backup=1;logical;wipeingui;
+/system_ext         ext4    /dev/block/bootdevice/by-name/system_ext                                flags=slotselect;display="system_ext";backup=1;logical;wipeingui;
+/vendor             ext4    /dev/block/bootdevice/by-name/vendor                                    flags=slotselect;display="vendor";backup=1;logical;wipeingui;
+
+# for stock rom with erofs
+/system             erofs   /dev/block/bootdevice/by-name/system                                    flags=slotselect;display="system";backup=1;logical;wipeingui;
+/product            erofs   /dev/block/bootdevice/by-name/product                                   flags=slotselect;display="product";backup=1;logical;wipeingui;
+/system_ext         erofs   /dev/block/bootdevice/by-name/system_ext                                flags=slotselect;display="system_ext";backup=1;logical;wipeingui;
+/vendor             erofs   /dev/block/bootdevice/by-name/vendor                                    flags=slotselect;display="vendor";backup=1;logical;wipeingui;
+/odm                erofs   /dev/block/bootdevice/by-name/odm                                       flags=slotselect;display="odm";backup=1;logical;wipeingui;   
 
 # Images																		  
 /system_image	    emmc	/dev/block/mapper/system    flags=backup=1;flashimg=1
@@ -35,6 +44,6 @@
 /nvram           emmc      /dev/block/by-name/nvram       flags=backup
 /proinfo         emmc      /dev/block/by-name/proinfo     flags=backup
 
-# Removable storage
-/external_sd     auto      /dev/block/mmcblk1p1    /dev/block/mmcblk1
-/usb-otg         auto      /dev/block/sda1         /dev/block/sda        flags=storage;wipeingui;removable
+# External-Devices (SDCARD | OTG)
+/external_sd    auto     /dev/block/mmcblk1p1  /dev/block/mmcblk1            flags=display="Micro_SDcard";storage;wipeingui;removable;fsflags="utf8"
+/usbotg        auto     /dev/block/sda1  /dev/block/sda                     flags=display="Usb_Otg";storage;wipeingui;removable;fsflags="utf8"
