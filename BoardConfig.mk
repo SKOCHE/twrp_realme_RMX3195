@@ -17,20 +17,6 @@
 
 DEVICE_PATH := device/realme/RMX3195
 
-# A/B
-AB_OTA_UPDATER := true
-
-AB_OTA_PARTITIONS += \
-    boot \
-    dtbo \
-    odm \
-    product \
-    system \
-    system_ext \
-    vbmeta \
-    vbmeta_system \
-    vendor \
-
 # For building with minimal manifest
 ALLOW_MISSING_DEPENDENCIES := true
 
@@ -106,13 +92,11 @@ BOARD_MAIN_PARTITION_LIST  := product system vendor odm
 BOARD_ODMIMAGE_FILE_SYSTEM_TYPE := erofs
 BOARD_PRODUCTIMAGE_FILE_SYSTEM_TYPE := erofs
 BOARD_SYSTEMIMAGE_FILE_SYSTEM_TYPE := erofs
-BOARD_SYSTEM_EXTIMAGE_FILE_SYSTEM_TYPE := erofs
 BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := erofs
 
 TARGET_COPY_OUT_ODM := odm
 TARGET_COPY_OUT_PRODUCT := product
 TARGET_COPY_OUT_SYSTEM := system
-TARGET_COPY_OUT_SYSTEM_EXT := system_ext
 TARGET_COPY_OUT_VENDOR := vendor
 
 BOARD_EROFS_COMPRESSOR := lz4
