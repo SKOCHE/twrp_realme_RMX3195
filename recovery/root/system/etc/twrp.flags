@@ -1,8 +1,8 @@
 # mount point    fstype    device                         flags
-/system_image           emmc    /dev/block/mapper/system       flags=slotselect;display="System image";flashimg=1;backup=1
-/vendor_image           emmc    /dev/block/mapper/vendor       flags=slotselect;display="Vendor image";flashimg=1;backup=1
-/product_image          emmc    /dev/block/mapper/product      flags=slotselect;display="Product image";flashimg=1;backup=1
-
+/system_image           emmc    /dev/block/mapper/system       flags=display="System image";flashimg=1;backup=1
+/vendor_image           emmc    /dev/block/mapper/vendor       flags=display="Vendor image";flashimg=1;backup=1
+/product_image          emmc    /dev/block/mapper/product      flags=display="Product image";flashimg=1;backup=1
+/odm_image              emmc    /dev/block/mapper/odm          flags=display="Odm image";flashimg=1;backup=1
 
 # Partitions
 /recovery        emmc      /dev/block/by-name/recovery    flags=backup;flashimg
@@ -26,7 +26,7 @@
 /protect_s       emmc      /dev/block/by-name/protect2    flags=backup
 /nvdata          emmc      /dev/block/by-name/nvdata      flags=backup
 /nvcfg           emmc      /dev/block/by-name/nvcfg       flags=backup
-/nvram           emmc      /dev/block/by-name/nvram       flags=backup;flashimg
+/nvram           emmc      /dev/block/by-name/nvram       flags=backup=1;flashimg
 /proinfo         emmc      /dev/block/by-name/proinfo     flags=backup
 
 # External-Devices (SDCARD | OTG)
