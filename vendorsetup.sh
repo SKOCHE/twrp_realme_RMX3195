@@ -68,8 +68,8 @@ if [ -f $FOX_MANIFEST_ROOT/bootable/recovery/orangefox_defaults.go -a -f $FOX_MA
     # Screen
     export OF_SCREEN_H=1600
     export OF_STATUS_H=50
-    export OF_STATUS_INDENT_LEFT=85
-    export OF_STATUS_INDENT_RIGHT=85
+    export OF_STATUS_INDENT_LEFT=48
+    export OF_STATUS_INDENT_RIGHT=48
     export OF_HIDE_NOTCH=1
     export OF_CLOCK_POS=1
     export OF_ALLOW_DISABLE_NAVBAR=0
