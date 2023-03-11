@@ -66,7 +66,7 @@ if [ -f $FOX_MANIFEST_ROOT/bootable/recovery/orangefox_defaults.go -a -f $FOX_MA
     export OF_NO_RELOAD_AFTER_DECRYPTION=1
 
     # Screen
-    export OF_SCREEN_H=1600
+    export OF_SCREEN_H=2400
     export OF_STATUS_H=50
     export OF_STATUS_INDENT_LEFT=48
     export OF_STATUS_INDENT_RIGHT=48
