@@ -22,7 +22,7 @@ on:
       DEVICE_TREE:
         description: 'Custom Recovery Tree'
         required: true
-        default: 'https://github.com/lopestom/android_device_realme_RMX3195'
+        default: 'https://github.com/SKOCHE/twrp_realme_RMX3195'
       DEVICE_TREE_BRANCH:
         description: 'Custom Recovery Tree Branch'
         required: true
@@ -60,7 +60,7 @@ jobs:
     - name: Set Current Date
       id: today
       run: |
-        echo "date=$(TZ=Australia/Sydney date +%Y%m%d-%l:%M%p)" >> $GITHUB_OUTPUT
+        echo "date=$(TZ=Moscow/Russia date +%Y%m%d-%l:%M%p)" >> $GITHUB_OUTPUT
         
     - name: Cleanup
       uses: rokibhasansagar/slimhub_actions@main
@@ -91,8 +91,8 @@ jobs:
       run: |
         mkdir ${GITHUB_WORKSPACE}/OrangeFox_sync
         cd ${GITHUB_WORKSPACE}/OrangeFox_sync
-        git config --global user.name "bacana"
-        git config --global user.email "bacana@gmail.com"
+        git config --global user.name "Captain Throwback"
+        git config --global user.email "captainthrowback@hotmail.com"
         git clone https://gitlab.com/OrangeFox/sync.git
         cd ${GITHUB_WORKSPACE}/OrangeFox_sync/sync/
         ./orangefox_sync.sh --branch ${{ github.event.inputs.MANIFEST_BRANCH }} --path ${GITHUB_WORKSPACE}/fox_${{ github.event.inputs.MANIFEST_BRANCH }}
