@@ -34,7 +34,6 @@ if [ -f $FOX_MANIFEST_ROOT/bootable/recovery/orangefox_defaults.go -a -f $FOX_MA
     export FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER=1
     export OF_SUPPORT_OZIP_DECRYPTION=1
     export FOX_RECOVERY_INSTALL_PARTITION="/dev/block/by-name/recovery"
-    export OF_TARGET_DEVICES="RMX3195, rmx3195, RMX3197, rmx3197, ossi"
     export FOX_RECOVERY_SYSTEM_PARTITION="/dev/block/mapper/system"
     export FOX_RECOVERY_VENDOR_PARTITION="/dev/block/mapper/vendor"
     export OF_MAINTAINER="S*K"
@@ -43,7 +42,7 @@ if [ -f $FOX_MANIFEST_ROOT/bootable/recovery/orangefox_defaults.go -a -f $FOX_MA
     export OF_USE_MAGISKBOOT=1
     export OF_AB_DEVICE=0
     export OF_USE_MAGISKBOOT_FOR_ALL_PATCHES=1
-    export OF_PATCH_VBMETA_FLAG=1
+
 
     # Magisk
     export FOX_USE_SPECIFIC_MAGISK_ZIP="$FOX_MANIFEST_ROOT/device/realme/RMX3195/Magisk/Magisk-v25.2.zip"
