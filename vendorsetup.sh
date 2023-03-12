@@ -38,8 +38,8 @@ if [ -f $FOX_MANIFEST_ROOT/bootable/recovery/orangefox_defaults.go -a -f $FOX_MA
     export FOX_RECOVERY_VENDOR_PARTITION="/dev/block/mapper/vendor"
     export OF_MAINTAINER="S*K"
 
-	# Custom pic for the maintainer's info in about section
-	export OF_MAINTAINER_AVATAR="$PWD/device/realme/RMX3195/maintainer.png"
+    # Custom pic for the maintainer's info in about section
+    export OF_MAINTAINER_AVATAR="$PWD/device/realme/RMX3195/maintainer.png"
 
     # Magiskboot
     export OF_USE_MAGISKBOOT=1
