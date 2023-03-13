@@ -18,7 +18,7 @@ on:
 env:
   MANIFEST: https://github.com/SHRP/manifest.git -b shrp-12.1
   DEVICE: RMX3195
-  DT_LINK: https://github.com/Gofaraway71/device_realme_RMX3195-SHRP
+  DT_LINK: https://github.com/SKOCHE/device_realme_RMX3195
   DT_PATH: device/realme/RMX3195
   CHAT_ID: ${{ secrets.TEST_CHAT_ID }}
   BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
