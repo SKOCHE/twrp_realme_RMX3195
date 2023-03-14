@@ -1,7 +1,8 @@
-name: shrp_12.1
+name: Recovery Build
+
 on:
   workflow_dispatch:
-    inputs: 
+    inputs:
       MANIFEST_URL:
         description: 'MANIFEST_URL (if using SSH keys, use git@github.com:repo URL format)'
         required: true
