@@ -1,4 +1,4 @@
-name: build
+name: shrp_12.1
 on:
   workflow_dispatch:
     inputs:
