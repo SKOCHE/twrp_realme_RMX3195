@@ -1,11 +1,7 @@
 name: shrp_12.1
 on:
   workflow_dispatch:
-    inputs:
-      parameter:
-        description: My Parameter
-  push: -- Add this here
-  
+    inputs: 
       MANIFEST_URL:
         description: 'MANIFEST_URL (if using SSH keys, use git@github.com:repo URL format)'
         required: true
