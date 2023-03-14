@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       MANIFEST_URL:
-        description: 'MANIFEST_URL (if using SSH keys, use git@github.com:repo URL format)'
+        description: 'MANIFEST_URL (if want to use SSH keys, use git@github.com:XXXXX)'
         required: true
         default: https://github.com/SHRP/manifest.git'
       MANIFEST_BRANCH:
@@ -161,4 +161,5 @@ jobs:
           Target: ${{ github.event.inputs.BUILD_TARGET }}.img
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    
     
