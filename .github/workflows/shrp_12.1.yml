@@ -153,8 +153,8 @@ jobs:
       uses: softprops/action-gh-release@v1
       with:
         files: workspace/out/target/product/${{ github.event.inputs.DEVICE_NAME }}/*.img
-        name: Unofficial SHRP for RMX3195
-        tag_name: ${{ github.run_id }}
+        name: Unofficial ${{ github.event.inputs.DEVICE_TREE_BRANCH }} for ${{ github.event.inputs.DEVICE_NAME }}
+        tag_name: ${{ github.event.inputs.MANIFEST_BRANCH }}
         body: |
           Manifest: ${{ github.event.inputs.MANIFEST_BRANCH }}
           Device: ${{ github.event.inputs.DEVICE_NAME }}
