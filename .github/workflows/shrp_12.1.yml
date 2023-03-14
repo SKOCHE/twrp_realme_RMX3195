@@ -5,6 +5,7 @@ on:
       parameter:
         description: My Parameter
   push: -- Add this here
+  
       MANIFEST_URL:
         description: 'MANIFEST_URL (if using SSH keys, use git@github.com:repo URL format)'
         required: true
