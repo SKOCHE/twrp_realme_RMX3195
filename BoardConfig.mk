@@ -179,6 +179,23 @@ TW_OZIP_DECRYPT_KEY := 0000
 TW_Y_OFFSET := 50
 TW_H_OFFSET := -50
 
+#SHRP Device Specific Properties
+SHRP_PATH := device/realme/RMX3195
+SHRP_MAINTAINER := SK
+SHRP_OFFICIAL := true
+SHRP_DEVICE_CODE := RMX3195
+SHRP_REC_TYPE := Normal
+SHRP_DEVICE_TYPE := A_only
+SHRP_EDL_MODE := 0
+SHRP_EXTERNAL := /external_sd
+SHRP_INTERNAL := /sdcard
+SHRP_OTG := /usb_otg
+SHRP_REC := /dev/block/platform/bootdevice/by-name/recovery
+SHRP_NOTCH := true
+SHRP_DARK := true
+SHRP_STATUSBAR_RIGHT_PADDING := 40
+SHRP_STATUSBAR_LEFT_PADDING := 40
+
 # resetprop and magiskboot
 TW_INCLUDE_RESETPROP := true
 TW_INCLUDE_REPACKTOOLS := true
@@ -186,5 +203,3 @@ TW_INCLUDE_REPACKTOOLS := true
 # Debug
 TWRP_INCLUDE_LOGCAT := true
 TARGET_USES_LOGD := true
-
-TW_DEVICE_VERSION := Realme C25s - RMX3195 by SK

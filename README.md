@@ -1,4 +1,4 @@
-# TWRP Realme C25s
+# SHRP Realme C25s
 Works:
 Encryption.
 Fastbootd.
