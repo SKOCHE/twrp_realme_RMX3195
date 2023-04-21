@@ -31,8 +31,7 @@ PRODUCT_MODEL := RMX3195
 PRODUCT_MANUFACTURER := realme
 
 # Shipping API level
-PRODUCT_SHIPPING_API_LEVEL := 31
-
+PRODUCT_SHIPPING_API_LEVEL := 32
 
 # Dynamic
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
@@ -46,7 +45,7 @@ PRODUCT_PACKAGES += \
 # Bypass anti-rollback ROMs protection
 # Set build date to Jan 1 2009 00:00:00
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.build.date.utc=1230768000 \
+    ro.build.date.utc=1682049087 \
     ro.bootimage.build.date.utc=0
 
 PRODUCT_SYSTEM_PROPERTY_BLACKLIST := \
