@@ -10,6 +10,7 @@
         manifest_videotelephony.xml
         manifest_km41.xml
         manifest_tee.xml
+        manifest_trustonic.xml		
         manifest_log.xml
         manifest_mdmonitor.xml
         manifest_aee.xml
@@ -511,8 +512,43 @@
         </interface>
         <fqname>@1.0::IVideoTelephony/default</fqname>
     </hal>
+    <hal format="hidl">
+        <name>vendor.oplus.hardware.cryptoeng</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>ICryptoeng</name>
+            <instance>default</instance>
+        </interface>
+        <fqname>@1.0::ICryptoeng/default</fqname>
+    </hal>
+    <hal format="hidl">
+        <name>vendor.trustonic.tee</name>
+        <transport>hwbinder</transport>
+        <version>1.1</version>
+        <interface>
+            <name>ITee</name>
+            <instance>default</instance>
+        </interface>
+        <fqname>@1.1::ITee/default</fqname>
+    </hal>
+    <hal format="hidl">
+        <name>vendor.trustonic.tee.tui</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>ITui</name>
+            <instance>default</instance>
+        </interface>
+        <fqname>@1.0::ITui/default</fqname>
+    </hal>					   
     <sepolicy>
-        <version>31.0</version>
+        <version>28</version>
+        <version>29</version>
+        <version>30</version>
+        <version>31</version>
+        <version>32</version>
+        <version>33</version>
     </sepolicy>
     <kernel target-level="5"/>
 </manifest>
