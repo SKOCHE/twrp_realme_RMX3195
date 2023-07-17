@@ -42,11 +42,13 @@ PRODUCT_PACKAGES += \
     android.hardware.fastboot@1.0-impl-mock.recovery \
     fastbootd
 
-# Bypass anti-rollback ROMs protection
-# Set build date to Jan 1 2009 00:00:00
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.build.date.utc=1682049087 \
-    ro.bootimage.build.date.utc=0
+# Keystore
+PRODUCT_PACKAGES += \
+    android.system.keystore2
+
+# Keymaster
+PRODUCT_PACKAGES += \
+    android.hardware.keymaster@4.1
 
 PRODUCT_SYSTEM_PROPERTY_BLACKLIST := \
     ro.product.device \
