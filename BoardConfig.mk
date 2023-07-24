@@ -151,18 +151,19 @@ BOARD_HAS_LARGE_FILESYSTEM := true
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 # Additional binaries & libraries needed for recovery
 TARGET_RECOVERY_DEVICE_MODULES += \
-     libion \
-     libkeymaster4 \
-     libpuresoftkeymasterdevice \
-     ashmemd_aidl_interface-cpp \
-     libashmemd_client
+    libion \
+    libkeymaster4 \
+    libpuresoftkeymasterdevice \
+    android.system.keystore2 \
+    android.hardware.keymaster@4.1
+ RECOVERY_LIBRARY_SOURCE_FILES += \
+    $(TARGET_OUT_SHARED_LIBRARIES)/android.system.keystore2.so							  
 
 TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
    $(TARGET_OUT_SHARED_LIBRARIES)/libion.so \
    $(TARGET_OUT_SHARED_LIBRARIES)/libkeymaster4.so \
    $(TARGET_OUT_SHARED_LIBRARIES)/libpuresoftkeymasterdevice.so \
-   $(TARGET_OUT_SHARED_LIBRARIES)/ashmemd_aidl_interface-cpp.so \
-   $(TARGET_OUT_SHARED_LIBRARIES)/libashmemd_client.so
+   $(TARGET_OUT_SHARED_LIBRARIES)/android.hardware.keymaster@4.1.so
 
 # TWRP specific build flags
 TW_THEME := portrait_hdpi
@@ -186,6 +187,7 @@ TW_H_OFFSET := -50
 # resetprop and magiskboot
 TW_INCLUDE_RESETPROP := true
 TW_INCLUDE_REPACKTOOLS := true
+TW_INCLUDE_LIBRESETPROP :=true							  
 
 # Debug
 TWRP_INCLUDE_LOGCAT := true
