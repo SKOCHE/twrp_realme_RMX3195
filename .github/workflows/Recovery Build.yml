@@ -112,7 +112,7 @@ jobs:
     - name: Clone device tree
       run: |
         git clone ${{ github.event.inputs.DEVICE_TREE_URL }} -b ${{ github.event.inputs.DEVICE_TREE_BRANCH }} ./${{ github.event.inputs.DEVICE_PATH }}
-        git clone https://github.com/TeamWin/android_bootable_recovery/tree/android-13-b                                                                                                                                                          
+        git clone https://github.com/TeamWin/android_bootable_recovery/tree/android-13                                                                                                                                                          
       working-directory: ${{ steps.pwd.outputs.workspace-folder }}
 
     - name: Clone common tree
