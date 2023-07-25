@@ -1,4 +1,4 @@
-name: Recovery Build test
+name: Recovery Build
 
 on:
   workflow_dispatch:
@@ -99,8 +99,8 @@ jobs:
         mkdir workspace
         cd workspace
         echo "workspace-folder=$(pwd)" >> $GITHUB_OUTPUT
-        git config --global user.name "brigudav"
-        git config --global user.email "alexvl1972@hotmail.com"
+        git config --global user.name "Nico170420"
+        git config --global user.email "b170420nc@gmail.com"
         repo init --depth=1 -u ${{ github.event.inputs.MANIFEST_URL }} -b ${{ github.event.inputs.MANIFEST_BRANCH }}
       id: pwd
           
@@ -112,7 +112,7 @@ jobs:
     - name: Clone device tree
       run: |
         git clone ${{ github.event.inputs.DEVICE_TREE_URL }} -b ${{ github.event.inputs.DEVICE_TREE_BRANCH }} ./${{ github.event.inputs.DEVICE_PATH }}
-        rm -rf bootable/recovery && git clone https://github.com/TeamWin/android_bootable_recovery/tree/android-13-b android-13 --depth 1 bootable/recovery
+        git clone https://github.com/TeamWin/android_bootable_recovery/tree/android-13-b                                                                                                                                                          
       working-directory: ${{ steps.pwd.outputs.workspace-folder }}
 
     - name: Clone common tree
@@ -161,4 +161,4 @@ jobs:
           Device: ${{ github.event.inputs.DEVICE_NAME }}
           Target: ${{ github.event.inputs.BUILD_TARGET }}.img
       env:
-        GITHUB_TOKEN: ${{ secrets.TEST }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
