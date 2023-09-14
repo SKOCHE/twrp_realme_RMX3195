@@ -30,8 +30,7 @@ PRODUCT_BRAND := realme
 PRODUCT_MODEL := RMX3195
 PRODUCT_MANUFACTURER := realme
 
-# Shipping API level
-PRODUCT_SHIPPING_API_LEVEL := 32
+
 
 # Dynamic
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
@@ -39,16 +38,7 @@ PRODUCT_USE_DYNAMIC_PARTITIONS := true
 # fastbootd
 PRODUCT_PACKAGES += \
     android.hardware.fastboot@1.0-impl-mock \
-    android.hardware.fastboot@1.0-impl-mock.recovery \
     fastbootd
-
-# Keystore
-PRODUCT_PACKAGES += \
-    android.system.keystore2
-
-# Keymaster
-PRODUCT_PACKAGES += \
-    android.hardware.keymaster@4.1
 
 PRODUCT_SYSTEM_PROPERTY_BLACKLIST := \
     ro.product.device \

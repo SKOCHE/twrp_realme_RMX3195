@@ -1,7 +1,1 @@
-# TWRP Realme C25s
-Works:
-Encryption.
-Fastbootd.
-Backup and recovery.
-MTP.
-
+## TWRP device tree for  Realme C25s ( RMX3195 )
