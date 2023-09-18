@@ -5,14 +5,14 @@
         oplus_framework_compatibility_matrix.xml
 -->
 <compatibility-matrix version="5.0" type="framework">
-    <hal format="aidl" optional="true">
-	<name>android.system.keystore2</name>
-	    <version>1.0</version>
-	<interface>
-	    <name>IKeystoreService</name>
-	    <instance>default</instance>
-	</interface>
-    </hal>
+	<hal format="aidl" optional="true">
+		<name>android.system.keystore2</name>
+		<version>1.0</version>
+		<interface>
+			<name>IKeystoreService</name>
+			<instance>default</instance>
+		</interface>
+	</hal>
     <hal format="aidl" optional="true">
         <name>android.hardware.biometrics.face</name>
         <interface>
