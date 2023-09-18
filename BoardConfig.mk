@@ -155,6 +155,22 @@ TW_INCLUDE_CRYPTO := true
 TW_INCLUDE_CRYPTO_FBE := true
 TW_INCLUDE_FBE_METADATA_DECRYPT := true
 
+TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
+# Additional binaries & libraries needed for recovery
+TARGET_RECOVERY_DEVICE_MODULES += \
+    libion \
+    libkeymaster4 \
+    libpuresoftkeymasterdevice \
+    android.system.keystore2 
+ RECOVERY_LIBRARY_SOURCE_FILES += \
+    $(TARGET_OUT_SHARED_LIBRARIES)/android.system.keystore2.so							  
+
+TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
+   $(TARGET_OUT_SHARED_LIBRARIES)/libion.so \
+   $(TARGET_OUT_SHARED_LIBRARIES)/libkeymaster4.so \
+   $(TARGET_OUT_SHARED_LIBRARIES)/libpuresoftkeymasterdevice.so 
+
+
 # TWRP specific build flags
 TW_THEME := portrait_hdpi
 RECOVERY_SDCARD_ON_DATA := true
