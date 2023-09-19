@@ -160,7 +160,7 @@ TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 TARGET_RECOVERY_DEVICE_MODULES += \
     libion \
     libkeymaster4 \
-    libpuresoftkeymasterdevice \
+    libpuresoftkeymasterdevice 
 
 TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
    $(TARGET_OUT_SHARED_LIBRARIES)/libion.so \
