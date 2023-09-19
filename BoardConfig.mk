@@ -161,9 +161,6 @@ TARGET_RECOVERY_DEVICE_MODULES += \
     libion \
     libkeymaster4 \
     libpuresoftkeymasterdevice \
-    android.system.keystore2 
- RECOVERY_LIBRARY_SOURCE_FILES += \
-    $(TARGET_OUT_SHARED_LIBRARIES)/android.system.keystore2.so							  
 
 TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
    $(TARGET_OUT_SHARED_LIBRARIES)/libion.so \
