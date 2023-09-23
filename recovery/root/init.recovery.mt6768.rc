@@ -19,10 +19,12 @@ service keystore_auth /system/bin/keystore_auth
     disabled
     seclabel u:r:recovery:s0
 
-service keystore /system/bin/keystore /tmp/misc/keystore
+service keystore2 /system/bin/keystore2 /tmp/misc/keystore
+    class early_hal
     user root
-    group root drmrpc readproc log
+    group keystore readproc log
     disabled
+    writepid /dev/cpuset/foreground/tasks
     seclabel u:r:recovery:s0
 
 # Start Daemon (Registry directories should already be present)
@@ -56,7 +58,7 @@ on property:enable.fbe.service=0
     stop gatekeeperd
     stop vendor.gatekeeper-1-0
 
-service hal_cryptoeng_oppo /system/bin/hw/vendor.oplus.hardware.cryptoeng@1.0-service
+service hal_cryptoeng_oppo /odm/bin/hw/vendor.oplus.hardware.cryptoeng@1.0-service
     user root
     group root input sdcard_rw sdcard_r
     disabled
