@@ -148,13 +148,7 @@ TW_INCLUDE_FBE_METADATA_DECRYPT := true
 # Recovery
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/system/etc/recovery.fstab
 BOARD_HAS_LARGE_FILESYSTEM := true
-TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
-
-TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
-   $(TARGET_OUT_SHARED_LIBRARIES)/libion.so \
-   $(TARGET_OUT_SHARED_LIBRARIES)/libkeymaster4.so \
-   $(TARGET_OUT_SHARED_LIBRARIES)/libpuresoftkeymasterdevice.so \
-   $(TARGET_OUT_SHARED_LIBRARIES)/android.hardware.keymaster@4.1.so		  
+TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"	  
 # TWRP specific build flags
 TW_THEME := portrait_hdpi
 RECOVERY_SDCARD_ON_DATA := true
