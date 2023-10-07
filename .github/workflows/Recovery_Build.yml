@@ -14,11 +14,11 @@ on:
       DEVICE_TREE_URL:
         description: 'DEVICE_TREE_URL'
         required: true
-        default: 'https://github.com/brigudav/device_realme_RMX3195-twrp'
+        default: 'https://github.com/SKOCHE/twrp_realme_RMX3195'
       DEVICE_TREE_BRANCH:
         description: 'DEVICE_TREE_BRANCH'
         required: true
-        default: 'android-12.1'
+        default: 'New_A13'
       DEVICE_PATH:
         description: 'DEVICE_PATH'
         required: true
@@ -99,8 +99,8 @@ jobs:
         mkdir workspace
         cd workspace
         echo "workspace-folder=$(pwd)" >> $GITHUB_OUTPUT
-        git config --global user.name "brigudav"
-        git config --global user.email "alexvl1972@hotmail.com"
+        git config --global user.name "Nico170420"
+        git config --global user.email "b170420nc@gmail.com"
         repo init --depth=1 -u ${{ github.event.inputs.MANIFEST_URL }} -b ${{ github.event.inputs.MANIFEST_BRANCH }}
       id: pwd
           
@@ -160,4 +160,4 @@ jobs:
           Device: ${{ github.event.inputs.DEVICE_NAME }}
           Target: ${{ github.event.inputs.BUILD_TARGET }}.img
       env:
-        GITHUB_TOKEN: ${{ secrets.TEST }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
