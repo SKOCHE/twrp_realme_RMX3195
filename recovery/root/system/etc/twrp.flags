@@ -1,0 +1,35 @@
+# mount point    fstype    device                         flags
+/system_image           emmc    /dev/block/mapper/system       flags=display="System image";flashimg=1;backup=1
+/vendor_image           emmc    /dev/block/mapper/vendor       flags=display="Vendor image";flashimg=1;backup=1
+/product_image          emmc    /dev/block/mapper/product      flags=display="Product image";flashimg=1;backup=1
+/odm_image              emmc    /dev/block/mapper/odm          flags=display="Odm image";flashimg=1;backup=1
+
+# Partitions
+/recovery        emmc      /dev/block/by-name/recovery    flags=backup;flashimg
+/boot            emmc      /dev/block/by-name/boot        flags=backup;flashimg
+/cache           emmc      /dev/block/by-name/cache       flags=backup
+/dtbo            emmc      /dev/block/by-name/dtbo        flags=backup
+/vbmeta          emmc      /dev/block/by-name/vbmeta      flags=backup;flashimg
+/persist         emmc      /dev/block/by-name/persist     flags=backup=1;display="Persist";mounttodecrypt
+/tee1            emmc      /dev/block/by-name/tee1        flags=backup
+/tee2            emmc      /dev/block/by-name/tee2        flags=backup
+/persistent      emmc      /dev/block/by-name/frp         flags=backup
+/bootloader      emmc      /dev/block/by-name/lk          flags=backup
+/bootloader2     emmc      /dev/block/by-name/lk2         flags=backup
+/logo            emmc      /dev/block/by-name/logo        flags=backup
+/expdb           emmc      /dev/block/by-name/expdb       flags=backup
+/seccfg          emmc      /dev/block/by-name/seccfg      flags=backup
+
+# IMEI and modem related
+# below four partitions are ext4, but we are using only for backup so emmc
+/protect_f       emmc      /dev/block/by-name/protect1    flags=backup
+/protect_s       emmc      /dev/block/by-name/protect2    flags=backup
+/nvdata          emmc      /dev/block/by-name/nvdata      flags=backup
+/nvcfg           emmc      /dev/block/by-name/nvcfg       flags=backup
+/nvram           emmc      /dev/block/by-name/nvram       flags=backup=1;flashimg
+/proinfo         emmc      /dev/block/by-name/proinfo     flags=backup
+
+# External-Devices (SDCARD | OTG)
+/external_sd    auto     /dev/block/mmcblk1p1  /dev/block/mmcblk1            flags=display="Micro_SDcard";storage;wipeingui;removable;fsflags="utf8"
+/usbotg        auto     /dev/block/sda1  /dev/block/sda                     flags=display="Usb_Otg";storage;wipeingui;removable;fsflags="utf8"
+
