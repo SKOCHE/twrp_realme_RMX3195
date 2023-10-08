@@ -1,6 +1,6 @@
 #
 # Copyright (C) 2020 The Android Open Source Project
-# Copyright (C) 2023 TeamWin Recovery Project
+# Copyright (C) 2021-2022 TeamWin Recovery Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,10 +14,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+
 DEVICE_PATH := device/realme/RMX3195
 
 # For building with minimal manifest
-
+ALLOW_MISSING_DEPENDENCIES := true
 
 # Architecture
 TARGET_ARCH := arm64
@@ -76,16 +77,13 @@ BOARD_MKBOOTIMG_ARGS += --second_offset $(BOARD_KERNEL_SECOND_OFFSET)
 BOARD_MKBOOTIMG_ARGS += --dtb_offset $(BOARD_DTB_OFFSET)
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
 
-# Verified Boot
+# AVB
 BOARD_AVB_ENABLE := true
-BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --flags 3
-BOARD_AVB_RECOVERY_KEY_PATH := external/avb/test/data/testkey_rsa4096.pem
 BOARD_AVB_RECOVERY_ALGORITHM := SHA256_RSA4096
+BOARD_AVB_RECOVERY_KEY_PATH := external/avb/test/data/testkey_rsa4096.pem
 BOARD_AVB_RECOVERY_ROLLBACK_INDEX := 1
 BOARD_AVB_RECOVERY_ROLLBACK_INDEX_LOCATION := 1
 
-
-BOARD_MAIN_PARTITION_LIST  := product system vendor odm
 
 # Dynamic Partitions
 BOARD_SUPER_PARTITION_SIZE := 10200547328
@@ -132,9 +130,19 @@ BOARD_PRODUCT_PARTITION_SIZE := 0x25B000
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 0x1A640F8000
 BOARD_VENDORIMAGE_PARTITION_SIZE := 0x1876D000
 
+# File systems
+BOARD_SYSTEMIMAGE_PARTITION_TYPE := ext4
+BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := f2fs
+TARGET_USERIMAGES_USE_EXT4 := true
+TARGET_USERIMAGES_USE_F2FS := true
+
 # System as root
-BOARD_BUILD_SYSTEM_ROOT_IMAGE := false
+BOARD_BUILD_SYSTEM_ROOT_IMAGE := false									  
 BOARD_SUPPRESS_SECURE_ERASE := true
+
+# Workaround for error copying vendor files to recovery ramdisk
+BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
+TARGET_COPY_OUT_VENDOR := vendor
 
 # Metadata
 BOARD_USES_METADATA_PARTITION := true
@@ -150,25 +158,22 @@ TW_INCLUDE_CRYPTO_FBE := true
 TW_INCLUDE_FBE_METADATA_DECRYPT := true
 BOARD_USES_METADATA_PARTITION := true
 BOARD_ROOT_EXTRA_FOLDERS += metadata
+
 # Recovery
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/system/etc/recovery.fstab
 BOARD_HAS_LARGE_FILESYSTEM := true
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 
-
-
 # TWRP specific build flags
 TW_THEME := portrait_hdpi
 RECOVERY_SDCARD_ON_DATA := true
 TW_EXCLUDE_DEFAULT_USB_INIT := true
-#TW_EXTRA_LANGUAGES := true
+TW_EXTRA_LANGUAGES := true
 TW_INCLUDE_NTFS_3G := true
 TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
 TW_MAX_BRIGHTNESS := 2047
 TW_DEFAULT_BRIGHTNESS := 1200
 TW_NO_SCREEN_BLANK := true
-PRODUCT_ENFORCE_VINTF_MANIFEST := true
-PRODUCT_FULL_TREBLE := true
 TW_SCREEN_BLANK_ON_BOOT := true
 TW_INCLUDE_LOGICAL := my_product my_engineering my_company my_carrier my_region my_heytap my_stock my_preload my_bigball
 TARGET_USES_MKE2FS := true
@@ -180,20 +185,9 @@ TW_H_OFFSET := -50
 # resetprop and magiskboot
 TW_INCLUDE_RESETPROP := true
 TW_INCLUDE_REPACKTOOLS := true
-TW_INCLUDE_LIBRESETPROP :=true
-TW_INCLUDE_PYTHON := true
-TW_HAS_DOWNLOAD_MODE := true									 
-TW_EXCLUDE_APEX := true									
 
 # Debug
 TWRP_INCLUDE_LOGCAT := true
 TARGET_USES_LOGD := true
 
-TW_DEVICE_VERSION := RMX3195 by SK
-# Build Assist
-BUILD_BROKEN_DUP_RULES := true
-BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
-ALLOW_MISSING_DEPENDENCIES := true
-
-# mtk legacy fstab
-TW_LEGACY_PROCESS_FSTAB := true
+TW_DEVICE_VERSION := Realme C25s - RMX3195 by SK
