@@ -1,4 +1,4 @@
-name: Build TWRP A11-12.1
+name:  Recovery Build
 
 on:
   workflow_dispatch:
@@ -122,15 +122,5 @@ jobs:
         echo "::set-output name=name::$(find * -name *.zip -type f)"
       id: zipname
 
-    - name: Publish to GitHub
-      if: github.event.inputs.PUBLISH == 'true'
-      uses: softprops/action-gh-release@v1
-      with:
-        files: ${{ steps.var.outputs.Outdir }}/${{ steps.zipname.outputs.name }}
-        name: ${{ steps.zipname.outputs.name }}-${{ github.run_id }}
-        tag_name: ${{ github.run_id }}
-        body: |
-          Manifest: ${{ github.event.inputs.LIBRARY_BRANCH }}
-          Device: ${{ github.event.inputs.DEVICE_NAME }}
       env:
         GITHUB_TOKEN: ${{ secrets.TEST }}
