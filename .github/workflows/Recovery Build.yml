@@ -79,7 +79,7 @@ jobs:
         echo "workspace-folder=$(pwd)" >> $GITHUB_OUTPUT      
         git config --global user.name "brigudav"
         git config --global user.email "alexvl1972@hotmail.com"
-        repo init --depth=1 -u ${{ github.event.inputs.MANIFEST_URL }} -b ${{ github.event.inputs.LIBRARY_BRANCH }}
+        repo init --depth=1 -u ${{ github.event.inputs.MANIFEST_URL }} -b ${{ github.event.inputs.MANIFEST_BRANCH }}
 
     - name: Repo Sync
       run: |
