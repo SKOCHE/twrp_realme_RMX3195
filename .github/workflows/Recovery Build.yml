@@ -3,7 +3,6 @@ name:  Recovery Build
 on:
   workflow_dispatch:
     inputs:
-
       MANIFEST_URL:
         description: 'MANIFEST_URL (if want to use SSH keys, use git@github.com:XXXXX)'
         required: true
@@ -12,7 +11,6 @@ on:
         description: 'MANIFEST_BRANCH'
         required: true
         default: 'twrp-12.1'
-
       DEVICE_TREE_URL:
         description: 'DEVICE_TREE_URL'
         required: true
@@ -70,8 +68,10 @@ jobs:
 
     - name: Init Repo
       run: |
-        mkdir ${GITHUB_WORKSPACE}/workspace
-        cd ${GITHUB_WORKSPACE}/workspace
+        mkdir ~/bin
+        curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
+        chmod a+x ~/bin/repo
+        sudo ln -sf ~/bin/repo /usr/bin/repo
         git config --global user.name "brigudav"
         git config --global user.email "alexvl1972@hotmail.com"
         repo init --depth=1 -u ${{ github.event.inputs.MANIFEST_URL }} -b ${{ github.event.inputs.LIBRARY_BRANCH }}
