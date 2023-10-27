@@ -8,7 +8,7 @@
 # Partitions
 /recovery        emmc      /dev/block/by-name/recovery    flags=backup;flashimg
 /boot            emmc      /dev/block/by-name/boot        flags=backup;flashimg
-/cache           emmc      /dev/block/by-name/cache       flags=backup
+/cache           ext4      /dev/block/by-name/cache
 /dtbo            emmc      /dev/block/by-name/dtbo        flags=backup
 /vbmeta          emmc      /dev/block/by-name/vbmeta      flags=backup;flashimg
 /persist         emmc      /dev/block/by-name/persist     flags=backup=1;display="Persist";mounttodecrypt
