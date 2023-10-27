@@ -27,8 +27,12 @@ on:
         description: 'DEVICE_NAME'
         required: true
         default: 'RMX3195'
-      DEVICE_TYPE:
-        description: 'DEVICE_TYPE'
+      MAKEFILE_NAME:
+        description: 'MAKEFILE_NAME'
+        required: true
+        default: 'twrp_RMX3195'
+      BUILD_TARGET:
+        description: 'BUILD_TARGET'
         required: true
         default: 'recovery'
 
@@ -83,35 +87,58 @@ jobs:
 
     - name: Repo Sync
       run: |
-        cd ${GITHUB_WORKSPACE}/workspace
-        repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags
-
-    - name: Clone Device Tree
+        repo sync -j$(nproc --all) --force-sync
+      working-directory: workspace
+      
+    - name: Clone device tree
       run: |
-        cd ${GITHUB_WORKSPACE}/workspace
         git clone ${{ github.event.inputs.DEVICE_TREE_URL }} -b ${{ github.event.inputs.DEVICE_TREE_BRANCH }} ./${{ github.event.inputs.DEVICE_PATH }}
+      working-directory: ${{ steps.pwd.outputs.workspace-folder }}
+
+    - name: Clone common tree
+      if: |
+        github.event.inputs.COMMON_TREE_URL != null
+        && github.event.inputs.COMMON_PATH != null
+      run: |
+        git clone ${{ github.event.inputs.COMMON_TREE_URL }} -b ${{ github.event.inputs.DEVICE_TREE_BRANCH }} ./${{ github.event.inputs.COMMON_PATH }}
+      working-directory: ${{ steps.pwd.outputs.workspace-folder }}
+
+    - name: Check Build Tree
+      uses: haya14busa/action-cond@v1
+      id: buildtree
+      with:
+        cond: ${{ github.event.inputs.MANIFEST_BRANCH == 'twrp-11' || github.event.inputs.MANIFEST_BRANCH == 'twrp-12.1' }}
+        if_true: twrp
+        if_false: omni
+
+    - name: Sync Device Dependencies
+      run: |
+        bash ${GITHUB_WORKSPACE}/scripts/convert.sh ${{ github.event.inputs.DEVICE_PATH }}/${{ steps.buildtree.outputs.value }}.dependencies
+        repo sync -j$(nproc --all)
+      working-directory: ${{ steps.pwd.outputs.workspace-folder }}
+      continue-on-error: true
+
+    - name: Set Swap Space
+      uses: pierotofy/set-swap-space@master
+      with:
+        swap-size-gb: 12
 
     - name: Building recovery
       run: |
-        cd ${GITHUB_WORKSPACE}/workspace
-        export ALLOW_MISSING_DEPENDENCIES=true
         source build/envsetup.sh
-        lunch ${{ github.event.inputs.MANIFEST_TYPE }}_${{ github.event.inputs.DEVICE_NAME }}-eng
-        make clean
-        make ${{ github.event.inputs.DEVICE_TYPE }}image -j$(nproc --all)
+        export ALLOW_MISSING_DEPENDENCIES=true
+        lunch ${{ github.event.inputs.MAKEFILE_NAME }}-eng && make clean && make ${{ github.event.inputs.BUILD_TARGET }}image -j$(nproc --all)
+      working-directory: ${{ steps.pwd.outputs.workspace-folder }}
 
-    - name: Set Variables
-      run: |
-        echo "::set-output name=date::$(TZ=Australia/Sydney date +%Y%m%d-%H%M)"
-        echo "::set-output name=Outdir::${GITHUB_WORKSPACE}/workspace/out/target/product/${{ github.event.inputs.DEVICE_NAME }}"
-      id: var
-
-    - name: Add Img to Zip
-      run: |
-        cd ${{ steps.var.outputs.Outdir }}
-        zip -9 twrp-${{ github.event.inputs.DEVICE_NAME }}-${{ steps.var.outputs.date }}.zip ${{ github.event.inputs.DEVICE_TYPE }}.img
-        echo "::set-output name=name::$(find * -name *.zip -type f)"
-      id: zipname
-
+    - name: Upload to Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: workspace/out/target/product/${{ github.event.inputs.DEVICE_NAME }}/${{ github.event.inputs.BUILD_TARGET }}.img
+        name: ${{ github.event.inputs.DEVICE_NAME }}-${{ github.run_id }}
+        tag_name: ${{ github.run_id }}
+        body: |
+          Manifest: ${{ github.event.inputs.MANIFEST_BRANCH }}
+          Device: ${{ github.event.inputs.DEVICE_NAME }}
+          Target: ${{ github.event.inputs.BUILD_TARGET }}.img
       env:
-        GITHUB_TOKEN: ${{ secrets.TEST }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
